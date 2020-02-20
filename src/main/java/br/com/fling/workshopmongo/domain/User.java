@@ -1,13 +1,13 @@
 package br.com.fling.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user")
-//ou simplesmente
-//@Document
+@Document(collection = "user") //ou simplesmente @Document
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	
-	//private List<Post> posts = new ArrayList<>();
+	private List<Post> posts = new ArrayList<>();
 	
 	public User() {		
 	}
@@ -27,7 +27,6 @@ public class User implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		//this.posts = posts;
 	}
 
 	public String getId() {
@@ -54,13 +53,13 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	/*public List<Post> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
-	}*/
+	}
 
 	@Override
 	public int hashCode() {
