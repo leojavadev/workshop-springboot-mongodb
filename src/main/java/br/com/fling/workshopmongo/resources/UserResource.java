@@ -27,19 +27,7 @@ public class UserResource {
 	@RequestMapping(method = RequestMethod.GET)
 	//ou
 	//@GetMapping
-	public ResponseEntity<List<UserDTO>> findAll(){
-		
-		//inserção manual dos dados no banco
-		/*
-		 * User maria = new User("1", "Maria", "maria@fling.com"); User joao = new
-		 * User("2", "João", "joao@fling.com"); 
-		 * User erica = new User("3", "Érica",
-		 * "erica@fling.com.br"); 
-		 * List<User> users = new ArrayList<>();
-		 * users.addAll(Arrays.asList(maria, joao, erica));
-		 * return ResponseEntity.ok().body(users);
-		 */	
-		
+	public ResponseEntity<List<UserDTO>> findAll(){		
 		List<User> list = service.findAll();
 		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);	
