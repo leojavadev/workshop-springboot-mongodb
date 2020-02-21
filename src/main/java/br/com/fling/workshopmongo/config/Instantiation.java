@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import br.com.fling.workshopmongo.domain.Post;
 import br.com.fling.workshopmongo.domain.User;
+import br.com.fling.workshopmongo.dto.AuthorDTO;
 import br.com.fling.workshopmongo.repository.PostRepository;
 import br.com.fling.workshopmongo.repository.UserRepository;
 
@@ -34,12 +35,14 @@ public class Instantiation implements CommandLineRunner {
 		User maria = new User(null, "Maria Brown", "maria@gmail.com");
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
-					
-		Post post1 = new Post(null, sdf.parse("20-02-2020"), "Post1", "Hello world", maria);
-		Post post2 = new Post(null, sdf.parse("21-02-2020"), "Post2", "Tenham uma boa semana!", maria);
-		Post post3 = new Post(null, sdf.parse("21-02-2020"), "Post3", "Bora codar!", alex);
 		
-		userRepository.saveAll(Arrays.asList(maria, alex, bob));		
-		postRepository.saveAll(Arrays.asList(post1, post2, post3));
+		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+					
+		Post post1 = new Post(null, sdf.parse("20-02-2020"), "Post1", "Hello world", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("21-02-2020"), "Post2", "Tenham uma boa semana!", new AuthorDTO(maria));
+		Post post3 = new Post(null, sdf.parse("21-02-2020"), "Post3", "Bora codar!", new AuthorDTO(alex));
+		Post post4 = new Post(null, sdf.parse("21-02-2010"), "Post4", "Bonjour", new AuthorDTO(bob));
+		
+		postRepository.saveAll(Arrays.asList(post1, post2, post3, post4));
 	} 
 }
