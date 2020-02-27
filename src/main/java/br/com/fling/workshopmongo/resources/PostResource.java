@@ -27,10 +27,19 @@ public class PostResource {
 		return ResponseEntity.ok().body(post);
 	}
 	
+	//consulta simples com query methods
 	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text", defaultValue="") String text){
 		text = URL.decodeParam(text);
 		List<Post> list = service.findByTitle(text);		
+		return ResponseEntity.ok().body(list);
+	}
+	
+	//consulta simples com @Query
+	@RequestMapping(value = "/posttitlesearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPostByTitle(@RequestParam(value="text", defaultValue="") String text){
+		text = URL.decodeParam(text);
+		List<Post> list = service.findPostByTitle(text);
 		return ResponseEntity.ok().body(list);
 	}
 
